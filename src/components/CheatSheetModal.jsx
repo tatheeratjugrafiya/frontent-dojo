@@ -34,7 +34,16 @@ export function CheatSheetModal({ isOpen, onClose }) {
     { id: 't6', title: 'Pill Status Badge', code: 'px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30' },
   ];
 
-  const currentList = (activeTab === 'react' ? reactItems : tailwindItems).filter(item => 
+  const jsItems = [
+    { id: 'j1', title: 'Nullish Coalescing & Optional Chaining', code: 'const city = user?.location?.city ?? "Default City";' },
+    { id: 'j2', title: 'Encapsulated Closure Counter', code: 'function counter(i = 0) {\n  let c = i;\n  return { inc: () => ++c, get: () => c };\n}' },
+    { id: 'j3', title: 'Array Pipeline (Filter + Map + Reduce)', code: 'const sum = items\n  .filter(x => x.active)\n  .map(x => x.price)\n  .reduce((acc, p) => acc + p, 0);' },
+    { id: 'j4', title: 'Async/Await with Error Catching', code: 'async function loadData() {\n  try {\n    const res = await fetch("/api/data");\n    return await res.json();\n  } catch (err) {\n    console.error(err.message);\n  }\n}' },
+    { id: 'j5', title: 'Debounce Utility', code: 'function debounce(fn, delay = 300) {\n  let timer;\n  return (...args) => {\n    clearTimeout(timer);\n    timer = setTimeout(() => fn(...args), delay);\n  };\n}' },
+    { id: 'j6', title: 'Deep Clone with structuredClone', code: 'const deepCopy = structuredClone(originalObject);' },
+  ];
+
+  const currentList = (activeTab === 'react' ? reactItems : activeTab === 'js' ? jsItems : tailwindItems).filter(item => 
     item.title.toLowerCase().includes(filter.toLowerCase()) ||
     item.code.toLowerCase().includes(filter.toLowerCase())
   );
@@ -66,15 +75,23 @@ export function CheatSheetModal({ isOpen, onClose }) {
           <div className="flex p-1 bg-slate-900 rounded-xl border border-slate-800">
             <button
               onClick={() => setActiveTab('react')}
-              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition ${
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${
                 activeTab === 'react' ? 'bg-sky-500 text-white shadow' : 'text-slate-400 hover:text-white'
               }`}
             >
               React 18
             </button>
             <button
+              onClick={() => setActiveTab('js')}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${
+                activeTab === 'js' ? 'bg-amber-500 text-slate-950 shadow font-black' : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              JavaScript ES6+
+            </button>
+            <button
               onClick={() => setActiveTab('tailwind')}
-              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition ${
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${
                 activeTab === 'tailwind' ? 'bg-sky-500 text-white shadow' : 'text-slate-400 hover:text-white'
               }`}
             >

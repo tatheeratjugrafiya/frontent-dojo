@@ -5,6 +5,8 @@ import {
   Trophy, RotateCcw, Zap
 } from 'lucide-react';
 import { InteractiveWidget } from './InteractiveWidget';
+import { JSInteractiveWidget } from './JSInteractiveWidget';
+import { BasicJSInteractiveWidget } from './BasicJSInteractiveWidget';
 
 export function LessonViewer({ 
   module, 
@@ -175,7 +177,13 @@ export function LessonViewer({
               </p>
             </div>
           </div>
-          <InteractiveWidget moduleId={module.id} />
+          {module.id.startsWith('bjs-') ? (
+            <BasicJSInteractiveWidget moduleId={module.id} />
+          ) : module.id.startsWith('js-') ? (
+            <JSInteractiveWidget moduleId={module.id} />
+          ) : (
+            <InteractiveWidget moduleId={module.id} />
+          )}
         </div>
       )}
 

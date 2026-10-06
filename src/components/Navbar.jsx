@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   BookOpen, Palette, Cpu, Trophy, FileText, Search, 
-  Sparkles, CheckCircle2, Award, Zap
+  Sparkles, CheckCircle2, Award, Zap, Terminal
 } from 'lucide-react';
 
 export function Navbar({ 
@@ -16,10 +16,13 @@ export function Navbar({
   const progressPercent = Math.round((completedLessons.length / totalLessons) * 100);
 
   const navItems = [
-    { id: 'curriculum', label: 'Curriculum', icon: BookOpen },
-    { id: 'tailwind', label: 'Tailwind Studio', icon: Palette },
-    { id: 'hooks', label: 'Hooks Visualizer', icon: Cpu },
-    { id: 'projects', label: 'Capstone Projects', icon: Trophy },
+    { id: 'basic-js', label: '🟢 JS Basics', icon: Terminal },
+    { id: 'js-curriculum', label: '💛 JS Advanced', icon: Terminal },
+    { id: 'curriculum', label: '⚛️ React Dojo', icon: BookOpen },
+    { id: 'js-sandbox', label: '💻 JS REPL', icon: Terminal },
+    { id: 'tailwind', label: '🎨 Tailwind', icon: Palette },
+    { id: 'hooks', label: '🔬 Hooks', icon: Cpu },
+    { id: 'projects', label: '🏆 Projects', icon: Trophy },
   ];
 
   return (
